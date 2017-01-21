@@ -121,6 +121,8 @@ $app->routeMiddleware([
 
 // Dingo Adapter for Lumen
 $app->register(Zeek\LumenDingoAdapter\Providers\LumenDingoAdapterServiceProvider::class);
+$app->register(Dingo\Api\Provider\LumenServiceProvider::class);
+$app->register(Irazasyed\Larasupport\Providers\ArtisanServiceProvider::class);
 
 // Lumen Generator disabled it on production if you want
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
@@ -139,5 +141,17 @@ $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 $app->group(['namespace' => App\Http\Controllers::class], function ($app) {
     require $app->basePath('/routes/api.php');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Class Aliases
+|--------------------------------------------------------------------------
+|
+| This array of class aliases will be registered when this application
+| is started. However, feel free to register as many as you wish as
+| the aliases are "lazy" loaded so they don't hinder performance.
+|
+*/
+class_alias('Tymon\JWTAuth\Facades\JWTAuth', 'JWTAuth');
 
 return $app;

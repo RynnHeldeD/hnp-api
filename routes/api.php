@@ -13,11 +13,15 @@
 
 $api = $app->make(Dingo\Api\Routing\Router::class);
 
-$api->version('v1', function ($api) {
-    $api->post('/objectives/{token}', [
+$params = [
+    'version' => env('API_VERSION'),
+];
+
+$api->version($params, function ($api) {
+
+    $api->post('/objectives', [
         'as'    => 'api.objectives.all',
-        'uses'  => 'App\Http\Controllers\ObjectiveController@getObjectives'
-        
+        'uses'  => 'App\Http\Controllers\ObjectiveController@getObjectives'   
     ]);
 
     $api->post('/auth/login', [
