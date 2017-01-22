@@ -18,12 +18,38 @@ $params = [
 ];
 
 $api->version($params, function ($api) {
+    /**
+    * OBJECTIVES
+    **/
+    $api->post('/objectives/create/', [
+        'as'    => 'api.objectives.create',
+        'uses'  => 'App\Http\Controllers\ObjectiveController@addObjective'   
+    ]);
 
-    $api->post('/objectives', [
+    $api->post('/objectives/all/', [
         'as'    => 'api.objectives.all',
         'uses'  => 'App\Http\Controllers\ObjectiveController@getObjectives'   
     ]);
 
+    $api->post('/objectives/get/{id}', [
+        'as'    => 'api.objectives.get',
+        'uses'  => 'App\Http\Controllers\ObjectiveController@getObjectiveById'   
+    ]);
+
+    $api->post('/objectives/update/', [
+        'as'    => 'api.objectives.update',
+        'uses'  => 'App\Http\Controllers\ObjectiveController@updateObjective'   
+    ]);
+
+    $api->post('/objectives/delete/{id}', [
+        'as'    => 'api.objectives.delete',
+        'uses'  => 'App\Http\Controllers\ObjectiveController@deletetObjective'   
+    ]);
+
+
+    /**
+    * AUTHENTICATION
+    **/
     $api->post('/auth/login', [
         'as'    => 'api.auth.login',
         'uses'  => 'App\Http\Controllers\Auth\AuthController@postLogin',
